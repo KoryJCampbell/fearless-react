@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Exo');
+
+.App {
+  text-align: center;
+}
+
+.header-text {
+  font-family: 'Permanent Marker', cursive;
+  margin: 20px;
+}
+
+.button-container {
+  height: 200px;
+  position: relative;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.header-text {
+  font-family: 'Permanent Marker', cursive;
+  margin: 20px;
+}
+
+
+/* Variables */
+
+$bPrimary: #7659ff;
+
+/* Functions */
+
+@function shade($color, $percent) {
+  @return mix(black, $color, $percent);
+}
+
+@function tint($color, $percent) {
+  @return mix(white, $color, $percent);
+}
+
+/* Mixins */
+
+@mixin cosmosButtonBorder($color) {
+  border-bottom: 3px solid shade($color, 14%);
+  box-shadow: 0 4px 10px rgba(6, 7, 64, 0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+}
+
+
+@mixin cosmosButtonBg($color) {
+  background: $color;
+  background-image: linear-gradient(to right, adjust-hue($color, 20deg), $color);
+}
+
+@mixin cosmosButtonHover($color) {
+  background-image: linear-gradient(to right, adjust-hue($color, 20deg), tint($color, 30%));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+button {
+  margin: 0.5rem;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 12px;
+  color: white;
+  font-weight: 900;
+  border: none;
+  transition: 0.5s;
+  background: none;
+
+  &.bg-primary {
+    @include cosmosButtonBorder($bPrimary);
+  }
+
+  &.bg-primary:hover {
+    @include cosmosButtonHover($bPrimary);
+  }
+
+}
+
+.bg-primary {
+  @include cosmosButtonBg($bPrimary);
+}
+
+.button-class {
+  margin: 50px 0px;
+}
